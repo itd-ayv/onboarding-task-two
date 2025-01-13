@@ -5,18 +5,14 @@ import groovy.sql.Sql
 import de.itdesign.clarity.rest.ClarityRestClient
 import de.itdesign.clarity.rest.RestResponse
 import java.sql.Connection
-import java.sql.DriverManager
 import org.example.utils.dbUtil
 
 class ProjectService {
 
     static Connection connection = dbUtil.connect()
-
     static RestResponse sendRequest(String httpMethod, String endpoint, Map data = null) {
-
         Sql sql = new Sql(connection)
         ClarityRestClient rest = new ClarityRestClient("admin", sql.getConnection(), "http://10.0.0.173:7080")
-
         def jsonData = data ? new JsonBuilder(data).toString() : null
         RestResponse response
         try {

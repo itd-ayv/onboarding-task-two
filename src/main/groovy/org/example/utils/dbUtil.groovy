@@ -4,11 +4,10 @@ import java.sql.Connection
 import java.sql.DriverManager
 
 class dbUtil {
-
+    static Connection connection = null
     private static String dbUrl = "jdbc:oracle:thin:@//10.0.0.173:11521/clarity"
     private static String dbUser = "niku"
     private static String dbPassword = "niku"
-    private static Connection connection = null
 
     static Connection connect() {
         try {
