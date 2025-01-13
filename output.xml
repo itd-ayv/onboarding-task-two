@@ -1,0 +1,11 @@
+<NikuDataBus xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../xsd/nikuxog_resource.xsd'>
+  <Header version='6.0.12' action='write' objectType='resource' externalSource='ORACLE-FINANCIAL' />
+  <Resources>
+    <Resource resourceId='XOG12355' isActive='true' employmentType='Employee' hireDate='2000-03-21' terminationDate='2002-09-21' managerUserName='admin' externalId='2323AAA'>
+      <PersonalInformation lastName='Doe' firstName='John' emailAddress='john.doe@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12352' isActive='false' employmentType='Contractor' hireDate='2012-02-15' terminationDate='2018-07-01' managerUserName='alice.smith' externalId='2323CCC'>
+      <PersonalInformation lastName='Smith' firstName='Alice' emailAddress='alice.smith@example.com' />
+    </Resource>
+  </Resources>
+</NikuDataBus>

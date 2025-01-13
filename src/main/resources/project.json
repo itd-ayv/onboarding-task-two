@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "name": "project A",
+      "scheduleStart": "2023-01-02T08:00:00",
+      "scheduleFinish": "2024-11-11T17:00:00",
+      "createdDate": "2023-01-01T08:00:00",
+      "isActive": true,
+      "tasks": [
+        {
+          "name": "Task 1",
+          "status": 0
+        },
+        {
+          "name": "Task 2",
+          "status": 1
+        }
+      ]
+    },
+    {
+      "name": "project B",
+      "scheduleStart": "2023-02-10T09:00:00",
+      "scheduleFinish": "2024-12-15T18:00:00",
+      "createdDate": "2023-02-09T09:00:00",
+      "isActive": true
+    }
+  ]
+}
