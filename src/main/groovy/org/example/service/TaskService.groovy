@@ -8,9 +8,7 @@ import java.sql.Connection
 import org.example.utils.dbUtil
 
 class TaskService {
-
     static Connection connection = dbUtil.connect()
-
     static RestResponse sendRequest(String httpMethod, String endpoint, Map data = null) {
         Sql sql = new Sql(connection)
         ClarityRestClient rest = new ClarityRestClient("admin", sql.getConnection(), "http://10.0.0.173:7080")
@@ -31,7 +29,6 @@ class TaskService {
         } finally {
             rest?.close()
         }
-
         return response
     }
 
@@ -53,7 +50,6 @@ class TaskService {
         def preparedStatement = connection.prepareStatement(query)
         preparedStatement.setString(1, taskName)
         def resultSet = preparedStatement.executeQuery()
-
         if (resultSet.next()) {
             String taskId = resultSet.getString("PRID")
             String taskNameFromDb = resultSet.getString("PRNAME")

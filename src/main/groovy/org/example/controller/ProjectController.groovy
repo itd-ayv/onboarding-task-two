@@ -33,9 +33,9 @@ class ProjectController {
         }
     }
 
-    def String getProjectInternalId(String projectName) {
+    String getProjectInternalId(String projectName) {
         try {
-           String response = projectService.getProjectInternalId(projectName)
+            String response = projectService.getProjectInternalId(projectName)
             return response
         } catch (Exception e) {
             return [status: 'error', message: e.message]
@@ -51,7 +51,7 @@ class ProjectController {
         }
     }
 
-    def Map getResourceDetails(String resourceCode) {
+    Map getResourceDetails(String resourceCode) {
         try {
             Map response = projectService.getResourceDetails(resourceCode)
             return [status: 'success', resource: response]

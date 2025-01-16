@@ -1,11 +1,11 @@
 <NikuDataBus xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../xsd/nikuxog_project.xsd'>
   <Header action='write' externalSource='NIKU' objectType='project' version='7.1.0.3023' />
   <Projects>
-    <Project projectID='PR2030' name='project New'>
+    <Project projectID='PR2032' name='Project New updated'>
       <Tasks>
         <Task taskID='5012006' outlineLevel='1' name='Task 3'>
           <Assignments>
-            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='paulBerks'>
+            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='XOG12363'>
               <CustomInformation />
             </TaskLabor>
           </Assignments>
@@ -16,11 +16,131 @@
       <CustomInformation />
       <OBSAssocs />
     </Project>
-    <Project projectID='PR2031' name='project Neww'>
+    <Project projectID='PR2033' name='Project Neww updated'>
       <Tasks>
         <Task taskID='5012007' outlineLevel='1' name='Task 4'>
           <Assignments>
-            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='paulBerks'>
+            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='XOG12364'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2034' name='Project Alpha'>
+      <Tasks>
+        <Task taskID='5012018' outlineLevel='1' name='Task 5'>
+          <Assignments>
+            <TaskLabor actualWork='22.00' baselineWork='0' remainingWork='30.00' resourceID='XOG12365'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2035' name='Project Beta'>
+      <Tasks>
+        <Task taskID='5012019' outlineLevel='1' name='Task 6'>
+          <Assignments>
+            <TaskLabor actualWork='10.50' baselineWork='0' remainingWork='20.00' resourceID='XOG12366'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2036' name='Project Gamma'>
+      <Tasks>
+        <Task taskID='5012020' outlineLevel='1' name='Task 7'>
+          <Assignments>
+            <TaskLabor actualWork='35.50' baselineWork='0' remainingWork='40.00' resourceID='XOG12367'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2037' name='Project Delta'>
+      <Tasks>
+        <Task taskID='5012021' outlineLevel='1' name='Task 8'>
+          <Assignments>
+            <TaskLabor actualWork='12.00' baselineWork='0' remainingWork='15.00' resourceID='XOG12368'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2038' name='Project Epsilon'>
+      <Tasks>
+        <Task taskID='5012022' outlineLevel='1' name='Task 9'>
+          <Assignments>
+            <TaskLabor actualWork='45.00' baselineWork='0' remainingWork='50.00' resourceID='XOG12369'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2039' name='Project Zeta'>
+      <Tasks>
+        <Task taskID='5012023' outlineLevel='1' name='Task 10'>
+          <Assignments>
+            <TaskLabor actualWork='16.00' baselineWork='0' remainingWork='20.00' resourceID='XOG12370'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2040' name='Project Eta'>
+      <Tasks>
+        <Task taskID='5012024' outlineLevel='1' name='Task 11'>
+          <Assignments>
+            <TaskLabor actualWork='30.00' baselineWork='0' remainingWork='35.00' resourceID='XOG12371'>
+              <CustomInformation />
+            </TaskLabor>
+          </Assignments>
+          <CustomInformation />
+        </Task>
+      </Tasks>
+      <Dependencies />
+      <CustomInformation />
+      <OBSAssocs />
+    </Project>
+    <Project projectID='PR2041' name='Project Theta'>
+      <Tasks>
+        <Task taskID='5012025' outlineLevel='1' name='Task 12'>
+          <Assignments>
+            <TaskLabor actualWork='40.00' baselineWork='0' remainingWork='45.00' resourceID='XOG12372'>
               <CustomInformation />
             </TaskLabor>
           </Assignments>

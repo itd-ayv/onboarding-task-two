@@ -11,8 +11,54 @@
       "resource_id": "XOG12364",
       "etc": 25.00,
       "actuals": 14.50
+    },
+    {
+      "task_id": 3,
+      "resource_id": "XOG12365",
+      "etc": 30.00,
+      "actuals": 22.00
+    },
+    {
+      "task_id": 4,
+      "resource_id": "XOG12366",
+      "etc": 20.00,
+      "actuals": 10.50
+    },
+    {
+      "task_id": 5,
+      "resource_id": "XOG12367",
+      "etc": 40.00,
+      "actuals": 35.50
+    },
+    {
+      "task_id": 6,
+      "resource_id": "XOG12368",
+      "etc": 15.00,
+      "actuals": 12.00
+    },
+    {
+      "task_id": 7,
+      "resource_id": "XOG12369",
+      "etc": 50.00,
+      "actuals": 45.00
+    },
+    {
+      "task_id": 8,
+      "resource_id": "XOG12370",
+      "etc": 20.00,
+      "actuals": 16.00
+    },
+    {
+      "task_id": 9,
+      "resource_id": "XOG12371",
+      "etc": 35.00,
+      "actuals": 30.00
+    },
+    {
+      "task_id": 10,
+      "resource_id": "XOG12372",
+      "etc": 45.00,
+      "actuals": 40.00
     }
   ]
 }
-
-

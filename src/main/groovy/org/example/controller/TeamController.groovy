@@ -9,10 +9,9 @@ class TeamController {
     def createTeam(String xmlData) {
         try {
             RestResponse response = teamService.createTeam(xmlData)
-            return  [status: 'success', Team: response?.jsonMap()]
+            return [status: 'success', Team: response?.jsonMap()]
         } catch (Exception e) {
-            return  [status : 'error', message: e.message]
+            return [status: 'error', message: e.message]
         }
     }
-
 }

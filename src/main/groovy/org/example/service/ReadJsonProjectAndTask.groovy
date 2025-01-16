@@ -13,21 +13,17 @@ class ReadJsonProjectAndTask {
     def readAndCreateProjects() {
         def jsonFile = getClass().getClassLoader().getResource(projectPath)
         def jsonText = jsonFile.text
-
         def jsonSlurper = new JsonSlurper()
         def parsedData = jsonSlurper.parseText(jsonText)
-
         // Reading tasks from JSON
         def taskFile = getClass().getClassLoader().getResource(taskPath)
         def taskText = taskFile.text
         def taskData = jsonSlurper.parseText(taskText)
-
         def statusMapping = [
                 'NOT STARTED': 0,
                 'IN PROGRESS': 1,
                 'COMPLETED'  : 2
         ]
-
         parsedData?.projects?.each { project ->
             def validationErrors = validateProject(project)
             if (validationErrors) {
@@ -46,7 +42,6 @@ class ReadJsonProjectAndTask {
 
             if (internalId) {
                 println "Project created with internal ID: ${internalId}"
-
                 // Find tasks associated with this project
                 def associatedTasks = taskData?.tasks?.findAll { it.project_id == project.id }
 
@@ -67,8 +62,6 @@ class ReadJsonProjectAndTask {
             } else {
                 println "Failed to create project: ${projectData}. Response: ${response?.jsonMap()}"
             }
-
-
         }
     }
 

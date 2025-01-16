@@ -26,14 +26,12 @@ class ProjectService {
             } else if (httpMethod == 'GET') {
                 response = rest.GET(endpoint)
             }
-            //  println "Response: ${response?.jsonMap()}"
         } catch (Exception e) {
             println "Caught exception: ${e.message}"
             e.printStackTrace()
         } finally {
             rest?.close()
         }
-
         return response
     }
 
@@ -51,10 +49,7 @@ class ProjectService {
 
     static List<Map> getProject(List<Map> projectNamesFromJson) {
         def allProjects = []
-        println(projectNamesFromJson)
-
         def projectNames = projectNamesFromJson.collect { it.name }
-        println(projectNames)
         def statement = connection.createStatement()
         def resultSet = statement.executeQuery("SELECT ID, CODE, NAME FROM INV_INVESTMENTS WHERE name IN (${projectNames.collect { "'${it}'" }.join(",")})")
         while (resultSet.next()) {
@@ -73,7 +68,6 @@ class ProjectService {
         def statement = connection.createStatement()
         def query = "SELECT ID, CODE, NAME FROM INV_INVESTMENTS WHERE name = ?"
         def preparedStatement = connection.prepareStatement(query)
-
         preparedStatement.setString(1, projectName)
         def resultSet = preparedStatement.executeQuery()
         if (resultSet.next()) {
@@ -85,20 +79,16 @@ class ProjectService {
 
     // Method to retrieve resource id and code from the database using resource code
     static Map getResourceDetails(String resourceCode) {
-
-    def query = "SELECT ID, UNIQUE_NAME FROM SRM_RESOURCES WHERE UNIQUE_NAME = ?"
-    def preparedStatement = connection.prepareStatement(query)
-
-    preparedStatement.setString(1, resourceCode)  // Set the parameter for resourceCode
-
-    def resultSet = preparedStatement.executeQuery()
-
-    if (resultSet.next()) {
-        return [id: resultSet.getString("ID"), code: resultSet.getString("UNIQUE_NAME")]   // Return the ID as a string
-    } else {
-        println("Resource with code ${resourceCode} not found in the database.")
-        return null
+        def query = "SELECT ID, UNIQUE_NAME FROM SRM_RESOURCES WHERE UNIQUE_NAME = ?"
+        def preparedStatement = connection.prepareStatement(query)
+        preparedStatement.setString(1, resourceCode)
+        def resultSet = preparedStatement.executeQuery()
+        if (resultSet.next()) {
+            return [id: resultSet.getString("ID"), code: resultSet.getString("UNIQUE_NAME")]
+        } else {
+            println("Resource with code ${resourceCode} not found in the database.")
+            return null
+        }
     }
-}
 
 }

@@ -9,7 +9,7 @@ class GenerateXml {
     ProjectController projectController = new ProjectController()
     TaskController taskController = new TaskController()
 
-    def String generateResourceXml() {
+    String generateResourceXml() {
         def resourcePath = "resource.json"
         def jsonSlurper = new JsonSlurper()
         def jsonFile = getClass().getClassLoader().getResource(resourcePath)
@@ -21,15 +21,15 @@ class GenerateXml {
             Header(version: "6.0.12", action: "write", objectType: "resource", externalSource: "ORACLE-FINANCIAL")
             Resources {
                 jsonData.resources.each { resource ->
-                if (!resource.resourceId || !resource.name || resource.isActive == null || !resource.emailAddress) {
-                    println "Skipping resource with missing required fields: $resource"
-                    return
-                }
+                    if (!resource.resourceId || !resource.name || resource.isActive == null || !resource.emailAddress) {
+                        println "Skipping resource with missing required fields: $resource"
+                        return
+                    }
 
-                if (!isValidEmail(resource.emailAddress)) {
-                    println "Invalid email address for resource ${resource.resourceId}: ${resource.emailAddress}"
-                    return
-                }
+                    if (!isValidEmail(resource.emailAddress)) {
+                        println "Invalid email address for resource ${resource.resourceId}: ${resource.emailAddress}"
+                        return
+                    }
                     def nameParts = resource.name.split(' ', 2)
                     def firstName = nameParts[0]
                     def lastName = nameParts.size() > 1 ? nameParts[1] : ''
@@ -44,18 +44,19 @@ class GenerateXml {
             }
         }
         new File('resource.xml').text = writer.toString()
+        println("Generated Resource XOG XML successfully")
+        return writer.toString()
     }
 
-    def boolean isValidEmail(String email) {
-    def emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-     return email.matches(emailPattern)
-}
+    boolean isValidEmail(String email) {
+        def emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        return email.matches(emailPattern)
+    }
 
-    def String generateAssignmentXml() {
+    String generateAssignmentXml() {
         def assignmentPath = "assignment.json"
         def projectPath = "project.json"
         def taskPath = "task.json"
-
         def jsonSlurper = new JsonSlurper()
 
         // Load the JSON files as text
@@ -114,7 +115,6 @@ class GenerateXml {
                                     }
                                 }
                             }
-
                             Dependencies()
                             CustomInformation()
                             OBSAssocs()
@@ -126,7 +126,7 @@ class GenerateXml {
             }
         }
         new File('assignment.xml').text = writer.toString()
+        println("Generated Assignment XOG XML successfully")
         return writer.toString()
     }
-
 }

@@ -4,7 +4,7 @@ import org.example.controller.TeamController
 import org.example.service.GenerateXml
 import org.example.service.ReadJsonProjectAndTask
 
-class Main {
+class ProjectDataHandler {
     static void main(String[] args) {
         ReadJsonProjectAndTask readJsonProjectAndTask = new ReadJsonProjectAndTask()
         readJsonProjectAndTask.readAndCreateProjects()

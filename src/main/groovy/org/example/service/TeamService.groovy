@@ -1,6 +1,5 @@
 package org.example.service
 
-import groovy.json.JsonBuilder
 import groovy.sql.Sql
 import de.itdesign.clarity.rest.ClarityRestClient
 import de.itdesign.clarity.rest.RestResponse
@@ -13,10 +12,11 @@ import org.example.utils.dbUtil
 class TeamService {
     static Connection connection = dbUtil.connect()
     static ProjectController projectController = new ProjectController()
+
     static void sendRequest(String xmlData) {
         Sql sql = new Sql(connection)
         ClarityRestClient rest = new ClarityRestClient("admin", sql.getConnection(), "http://10.0.0.173:7080")
-        RestResponse response = null  // Declare response variable outside of try block
+        RestResponse response = null
 
         try {
             def xmlParser = new XmlParser()
@@ -39,12 +39,8 @@ class TeamService {
                                 def teamData = [
                                         resource: resourceDetails?.resource?.id
                                 ]
-
-                                print(teamData)
-
                                 // Post the team assignment to the Clarity API
-                               response = rest.POST("/projects/${internalId}/teams", teamData)
-
+                                response = rest.POST("/projects/${internalId}/teams", teamData)
                                 if (response?.jsonMap()) {
                                     println("Successfully added resource ${resourceDetails?.resource?.code} to project ${projectId} team.")
                                 } else {

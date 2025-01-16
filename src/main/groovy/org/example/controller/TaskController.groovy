@@ -24,7 +24,7 @@ class TaskController {
         }
     }
 
-    def Map getTaskInternalId(String taskName) {
+    Map getTaskInternalId(String taskName) {
         try {
             Map response = taskService.getTaskInternalId(taskName)
             return response
