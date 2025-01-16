@@ -2,31 +2,16 @@
   "resources": [
     {
       "resourceId": "XOG12355",
+      "name": "John Doe",
       "isActive": true,
-      "employmentType": "Employee",
-      "hireDate": "2000-03-21",
-      "terminationDate": "2002-09-21",
-      "managerUserName": "admin",
-      "externalId": "2323AAA",
-      "personalInformation": {
-        "lastName": "Doe",
-        "firstName": "John",
-        "emailAddress": "john.doe@example.com"
-      }
+      "emailAddress": "john.doe@example.com"
     },
- {
+    {
       "resourceId": "XOG12352",
+      "name": "Alice Smith",
       "isActive": false,
       "employmentType": "Contractor",
-      "hireDate": "2012-02-15",
-      "terminationDate": "2018-07-01",
-      "managerUserName": "alice.smith",
-      "externalId": "2323CCC",
-      "personalInformation": {
-        "lastName": "Smith",
-        "firstName": "Alice",
-        "emailAddress": "alice.smith@example.com"
-      }
+      "emailAddress": "alice.smith@example.com"
     }
   ]
 }

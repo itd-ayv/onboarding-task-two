@@ -4,11 +4,11 @@ import groovy.json.JsonSlurper
 import org.example.controller.ProjectController
 import org.example.controller.TaskController
 
-class ReadJsonProject {
-
+class ReadJsonProjectAndTask {
     ProjectController projectController = new ProjectController()
     TaskController taskController = new TaskController()
     def projectPath = 'project.json'
+    def taskPath = 'task.json'
 
     def readAndCreateProjects() {
         def jsonFile = getClass().getClassLoader().getResource(projectPath)
@@ -16,6 +16,17 @@ class ReadJsonProject {
 
         def jsonSlurper = new JsonSlurper()
         def parsedData = jsonSlurper.parseText(jsonText)
+
+        // Reading tasks from JSON
+        def taskFile = getClass().getClassLoader().getResource(taskPath)
+        def taskText = taskFile.text
+        def taskData = jsonSlurper.parseText(taskText)
+
+        def statusMapping = [
+                'NOT STARTED': 0,
+                'IN PROGRESS': 1,
+                'COMPLETED'  : 2
+        ]
 
         parsedData?.projects?.each { project ->
             def validationErrors = validateProject(project)
@@ -33,20 +44,41 @@ class ReadJsonProject {
             def response = projectController.createProject(projectData)
             def internalId = response?.project?._internalId
 
-            if (project.tasks != null) {
-                project?.tasks?.each { task ->
-                    def taskData = [
-                            name     : task.name,
-                            _parentId: internalId,
-                            status   : task.status
-                    ]
-                    taskController.createTask(internalId as String, taskData)
-                    println(taskData)
+            if (internalId) {
+                println "Project created with internal ID: ${internalId}"
+
+                // Find tasks associated with this project
+                def associatedTasks = taskData?.tasks?.findAll { it.project_id == project.id }
+
+                if (associatedTasks?.isEmpty()) {
+                    println "No tasks found for project ${project.name} (ID: ${project.id})"
+                } else {
+                    associatedTasks.each { task ->
+                        def mappedStatus = statusMapping[task.status.toUpperCase()] ?: 0
+                        def taskDataToPost = [
+                                name     : task.name,
+                                _parentId: internalId,
+                                status   : mappedStatus
+                        ]
+                        // Posting the task for the created project
+                        taskController.createTask(internalId as String, taskDataToPost)
+                    }
                 }
+            } else {
+                println "Failed to create project: ${projectData}. Response: ${response?.jsonMap()}"
             }
+
+
         }
     }
 
+    def readProject() {
+        def jsonFile = getClass().getClassLoader().getResource(projectPath)
+        def jsonText = jsonFile.text
+        def jsonSlurper = new JsonSlurper()
+        def parsedData = jsonSlurper.parseText(jsonText)
+        projectController.getProject(parsedData.projects)
+    }
 
     // Method to validate each project
     private List<String> validateProject(def project) {
