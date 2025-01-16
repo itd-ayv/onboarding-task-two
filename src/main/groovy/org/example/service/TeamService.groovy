@@ -4,45 +4,79 @@ import groovy.json.JsonBuilder
 import groovy.sql.Sql
 import de.itdesign.clarity.rest.ClarityRestClient
 import de.itdesign.clarity.rest.RestResponse
+import groovy.xml.XmlParser
+import org.example.controller.ProjectController
+
 import java.sql.Connection
 import org.example.utils.dbUtil
 
 class TeamService {
-
     static Connection connection = dbUtil.connect()
-    static RestResponse sendRequest(String httpMethod, String endpoint, Map data = null) {
+    static ProjectController projectController = new ProjectController()
+    static void sendRequest(String xmlData) {
         Sql sql = new Sql(connection)
         ClarityRestClient rest = new ClarityRestClient("admin", sql.getConnection(), "http://10.0.0.173:7080")
-        def jsonData = data ? new JsonBuilder(data).toString() : null
-        RestResponse response
+        RestResponse response = null  // Declare response variable outside of try block
+
         try {
-            if (httpMethod == 'POST') {
-                response = rest.POST(endpoint, jsonData)
-            } else if (httpMethod == 'PATCH') {
-                response = rest.PATCH(endpoint, jsonData)
-            } else if (httpMethod == 'GET') {
-                response = rest.GET(endpoint)
+            def xmlParser = new XmlParser()
+            def parsedXml = xmlParser.parseText(xmlData)
+            parsedXml.'Projects'.'Project'.each { project ->
+                def projectName = project.@name
+                def projectId = project.@projectID
+                // Retrieve the internal_id of the project from the database
+                println(projectName)
+                String internalId = projectController.getProjectInternalId(projectName as String)
+
+                if (internalId) {
+                    project.'Tasks'.'Task'.each { task ->
+                        task.'Assignments'.'TaskLabor'.each { assignment ->
+                            def resourceCode = assignment.@resourceID
+                            // Retrieve resource details from the database
+                            Map resourceDetails = projectController.getResourceDetails(resourceCode)
+
+                            if (resourceDetails) {
+                                def teamData = [
+                                        resource: resourceDetails?.resource?.id
+                                ]
+
+                                print(teamData)
+
+                                // Post the team assignment to the Clarity API
+                               response = rest.POST("/projects/${internalId}/teams", teamData)
+
+                                if (response?.jsonMap()) {
+                                    println("Successfully added resource ${resourceDetails?.resource?.code} to project ${projectId} team.")
+                                } else {
+                                    // Handle the error if the resource is already assigned to another team (project)
+                                    if (response?.jsonMap()?.errorCode == 'projmgr.TEAM_RESOURCE_ALREADY_STAFFED') {
+                                        // Resource is already assigned to another project, check if it's the same one
+                                        def existingProjectId = response?.jsonMap()?.errorMessage?.split(":")?.last()?.trim()
+                                        if (existingProjectId != projectId) {
+                                            // Resource is already assigned to another project, but not the current one
+                                            println("Resource ${resourceDetails?.resource?.code} is already assigned to another project ${existingProjectId}, proceeding with adding to current project.")
+                                        } else {
+                                            println("Resource ${resourceDetails?.resource?.code} is already assigned to project ${projectId}. Skipping.")
+                                        }
+                                    } else {
+                                        println("Failed to add resource ${resourceDetails?.resource?.code} to project ${projectId} team. Response: ${response?.jsonMap()}")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+            // The response is only accessible after the try block
             println "Response: ${response?.jsonMap()}"
         } catch (Exception e) {
             println "Caught exception: ${e.message}"
             e.printStackTrace()
-        } finally {
-            rest?.close()
         }
-
-        return response
     }
 
-    static RestResponse createTeam(String projectId, Map teamData) {
-        return sendRequest('POST', "/projects/${projectId}/teams", teamData)
+    static RestResponse createTeam(String xmlData) {
+        return sendRequest(xmlData)
     }
 
-    static RestResponse updateTeam(String projectInternalId, String teamId,  Map teamData) {
-        return sendRequest('PATCH', "/projects/${projectInternalId}/teams/${teamId}", teamData)
-    }
-//
-//    static RestResponse getTeam(String projectId) {
-//        return sendRequest('GET', "/projects/${projectId}")
-//    }
 }

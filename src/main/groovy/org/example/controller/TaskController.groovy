@@ -24,6 +24,15 @@ class TaskController {
         }
     }
 
+    def Map getTaskInternalId(String taskName) {
+        try {
+            Map response = taskService.getTaskInternalId(taskName)
+            return response
+        } catch (Exception e) {
+            return [status: 'error', message: e.message]
+        }
+    }
+
     def updateTask(String projectInternalId, String taskId, Map taskData) {
         try {
             RestResponse response = taskService.updateTask(projectInternalId, taskId, taskData)

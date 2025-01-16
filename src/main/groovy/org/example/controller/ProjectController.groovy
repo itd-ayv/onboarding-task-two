@@ -33,7 +33,7 @@ class ProjectController {
         }
     }
 
-    def getProjectInternalId(String projectName) {
+    def String getProjectInternalId(String projectName) {
         try {
            String response = projectService.getProjectInternalId(projectName)
             return response
@@ -46,6 +46,15 @@ class ProjectController {
         try {
             RestResponse response = projectService.updateProject(projectId, projectData)
             return [status: 'success', project: response?.jsonMap()]
+        } catch (Exception e) {
+            return [status: 'error', message: e.message]
+        }
+    }
+
+    def Map getResourceDetails(String resourceCode) {
+        try {
+            Map response = projectService.getResourceDetails(resourceCode)
+            return [status: 'success', resource: response]
         } catch (Exception e) {
             return [status: 'error', message: e.message]
         }

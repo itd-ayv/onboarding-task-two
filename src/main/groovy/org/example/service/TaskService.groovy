@@ -10,6 +10,7 @@ import org.example.utils.dbUtil
 class TaskService {
 
     static Connection connection = dbUtil.connect()
+
     static RestResponse sendRequest(String httpMethod, String endpoint, Map data = null) {
         Sql sql = new Sql(connection)
         ClarityRestClient rest = new ClarityRestClient("admin", sql.getConnection(), "http://10.0.0.173:7080")
@@ -44,5 +45,22 @@ class TaskService {
 
     static RestResponse getTask(String projectInternalId) {
         return sendRequest('GET', "projects/${projectInternalId}/tasks/")
+    }
+
+    static Map getTaskInternalId(String taskName) {
+        def statement = connection.createStatement()
+        def query = "SELECT PRID, PRNAME FROM PRTASK WHERE PRNAME = ?"
+        def preparedStatement = connection.prepareStatement(query)
+        preparedStatement.setString(1, taskName)
+        def resultSet = preparedStatement.executeQuery()
+
+        if (resultSet.next()) {
+            String taskId = resultSet.getString("PRID")
+            String taskNameFromDb = resultSet.getString("PRNAME")
+            println("Task ID: ${taskId}, Task Name: ${taskNameFromDb}")
+            return [id: taskId, name: taskNameFromDb]
+        } else {
+            return null
+        }
     }
 }

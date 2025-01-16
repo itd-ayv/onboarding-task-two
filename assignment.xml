@@ -1,11 +1,11 @@
 <NikuDataBus xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../xsd/nikuxog_project.xsd'>
   <Header action='write' externalSource='NIKU' objectType='project' version='7.1.0.3023' />
   <Projects>
-    <Project projectID='PR2022' name='project B'>
+    <Project projectID='PR2030' name='project New'>
       <Tasks>
-        <Task taskID='5012002' outlineLevel='1' name='Task 1'>
+        <Task taskID='5012006' outlineLevel='1' name='Task 3'>
           <Assignments>
-            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='XOG12355'>
+            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='paulBerks'>
               <CustomInformation />
             </TaskLabor>
           </Assignments>
@@ -16,11 +16,11 @@
       <CustomInformation />
       <OBSAssocs />
     </Project>
-    <Project projectID='PR2023' name='project C'>
+    <Project projectID='PR2031' name='project Neww'>
       <Tasks>
-        <Task taskID='5012003' outlineLevel='1' name='Task 2'>
+        <Task taskID='5012007' outlineLevel='1' name='Task 4'>
           <Assignments>
-            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='XOG12355'>
+            <TaskLabor actualWork='14.50' baselineWork='0' remainingWork='25.00' resourceID='paulBerks'>
               <CustomInformation />
             </TaskLabor>
           </Assignments>

@@ -2,8 +2,14 @@
   "tasks": [
     {
       "id" : 1,
-      "name": "Task 1",
+      "name": "Task 3",
       "project_id": 1,
+      "status": "IN PROGRESS"
+    },
+    {
+      "id" : 2,
+      "name": "Task 4",
+      "project_id": 2,
       "status": "IN PROGRESS"
     }
   ]

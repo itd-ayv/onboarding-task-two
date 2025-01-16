@@ -1,20 +1,18 @@
 package org.example
 
-
+import org.example.controller.TeamController
 import org.example.service.GenerateXml
+import org.example.service.ReadJsonProjectAndTask
 
 class Main {
     static void main(String[] args) {
-       // ReadJsonProject readJsonProject = new ReadJsonProject()
-        //readJsonProject.readProject()
-//        ReadJsonTask readJsonTask = new ReadJsonTask()
-//        //readJsonTask.readAndCreateTasks()
+        ReadJsonProjectAndTask readJsonProjectAndTask = new ReadJsonProjectAndTask()
+        readJsonProjectAndTask.readAndCreateProjects()
         GenerateXml generateResourceXml = new GenerateXml()
-       generateResourceXml.generateAssignmentXml()
-//        //generateResourceXml.generateAssignmentXml()
-//        ReadJsonTeam readJsonTeam = new ReadJsonTeam()
-//        TeamController teamController = new TeamController()
-//        //teamController.updateTeam("500200", "5004027", [resource:5004028])
-
+        generateResourceXml.generateResourceXml()
+        generateResourceXml.generateAssignmentXml()
+        String xmlData = new File("assignment.xml").text
+        TeamController teamController = new TeamController()
+        teamController.createTeam(xmlData)
     }
 }

@@ -1,7 +1,6 @@
 package org.example.service
 
 import groovy.json.JsonBuilder
-import groovy.json.JsonSlurper
 import groovy.sql.Sql
 import de.itdesign.clarity.rest.ClarityRestClient
 import de.itdesign.clarity.rest.RestResponse
@@ -12,7 +11,6 @@ import de.itdesign.clarity.logging.CommonLogger
 class ProjectService {
     static Sql sql
     static CommonLogger cmnLog = new CommonLogger(this)
-
     static Connection connection = dbUtil.connect()
 
     static RestResponse sendRequest(String httpMethod, String endpoint, Map data = null) {
@@ -23,8 +21,6 @@ class ProjectService {
         try {
             if (httpMethod == 'POST') {
                 response = rest.POST(endpoint, jsonData)
-                println("hello")
-                cmnLog.info("hey")
             } else if (httpMethod == 'PATCH') {
                 response = rest.PATCH(endpoint, jsonData)
             } else if (httpMethod == 'GET') {
@@ -63,12 +59,10 @@ class ProjectService {
         def resultSet = statement.executeQuery("SELECT ID, CODE, NAME FROM INV_INVESTMENTS WHERE name IN (${projectNames.collect { "'${it}'" }.join(",")})")
         while (resultSet.next()) {
             def project = [
-                    id  : resultSet.getInt("ID"),   // Get the ID from the result set
-                    code: resultSet.getString("CODE"), // Get the CODE from the result set
-                    name: resultSet.getString("NAME")  // Get the NAME from the result set
+                    id  : resultSet.getInt("ID"),
+                    code: resultSet.getString("CODE"),
+                    name: resultSet.getString("NAME")
             ]
-
-            // Append the project data to the allProjects list
             allProjects << project
         }
         return allProjects
@@ -82,12 +76,29 @@ class ProjectService {
 
         preparedStatement.setString(1, projectName)
         def resultSet = preparedStatement.executeQuery()
-        // If the query returns a result, retrieve the ID
         if (resultSet.next()) {
-            println(resultSet.getString("ID"))
             return resultSet.getString("ID")
         } else {
-            return null  // If no matching project is found, return null
+            return null
         }
     }
+
+    // Method to retrieve resource id and code from the database using resource code
+    static Map getResourceDetails(String resourceCode) {
+
+    def query = "SELECT ID, UNIQUE_NAME FROM SRM_RESOURCES WHERE UNIQUE_NAME = ?"
+    def preparedStatement = connection.prepareStatement(query)
+
+    preparedStatement.setString(1, resourceCode)  // Set the parameter for resourceCode
+
+    def resultSet = preparedStatement.executeQuery()
+
+    if (resultSet.next()) {
+        return [id: resultSet.getString("ID"), code: resultSet.getString("UNIQUE_NAME")]   // Return the ID as a string
+    } else {
+        println("Resource with code ${resourceCode} not found in the database.")
+        return null
+    }
+}
+
 }
