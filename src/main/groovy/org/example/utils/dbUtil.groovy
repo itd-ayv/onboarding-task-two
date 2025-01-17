@@ -5,12 +5,18 @@ import java.sql.DriverManager
 
 class dbUtil {
     static Connection connection = null
-    private static String dbUrl = "jdbc:oracle:thin:@//10.0.0.173:11521/clarity"
-    private static String dbUser = "niku"
-    private static String dbPassword = "niku"
+    private static String dbUrl
+    private static String dbUser
+    private static String dbPassword
 
     static Connection connect() {
         try {
+            Properties properties = new Properties()
+            FileInputStream input = new FileInputStream("src/main/resources/application.properties")
+            properties.load(input)
+            dbUrl = properties.getProperty("db.url")
+            dbUser = properties.getProperty("db.username")
+            dbPassword = properties.getProperty("db.password")
             connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword)
             println "Connected to the database successfully!"
         } catch (Exception e) {
