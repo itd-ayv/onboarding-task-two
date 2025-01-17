@@ -1,28 +1,67 @@
 {
-  "projects": [
-    {
-      "project_id": "P123",
-      "project_name": "Project A",
-      "start_date": "2025-01-01",
-      "end_date": "2025-12-31"
-    },
-    {
-      "project_id": "P124",
-      "project_name": "Project B",
-      "start_date": "2025-02-01",
-      "end_date": "2025-11-30"
-    }
-  ],
   "resources": [
     {
-      "resource_id": "R101",
-      "resource_name": "Resource A",
-      "role": "Developer"
+      "resourceId": "XOG12363",
+      "name": "John Doee",
+      "isActive": true,
+      "emailAddress": "john.doe@example.com"
     },
     {
-      "resource_id": "R102",
-      "resource_name": "Resource B",
-      "role": "Tester"
+      "resourceId": "XOG12364",
+      "name": "Alice Smithh",
+      "isActive": false,
+      "employmentType": "Contractor",
+      "emailAddress": "alice.smith@example.com"
+    },
+    {
+      "resourceId": "XOG12365",
+      "name": "Bob Martin",
+      "isActive": true,
+      "emailAddress": "bob.martin@example.com"
+    },
+    {
+      "resourceId": "XOG12366",
+      "name": "Charlie Brown",
+      "isActive": true,
+      "emailAddress": "charlie.brown@example.com"
+    },
+    {
+      "resourceId": "XOG12367",
+      "name": "David Lee",
+      "isActive": true,
+      "emailAddress": "david.lee@example.com"
+    },
+    {
+      "resourceId": "XOG12368",
+      "name": "Eva Turner",
+      "isActive": false,
+      "employmentType": "Contractor",
+      "emailAddress": "eva.turner@example.com"
+    },
+    {
+      "resourceId": "XOG12369",
+      "name": "Frank Harris",
+      "isActive": true,
+      "emailAddress": "frank.harris@example.com"
+    },
+    {
+      "resourceId": "XOG12370",
+      "name": "Grace Kim",
+      "isActive": false,
+      "employmentType": "Consultant",
+      "emailAddress": "grace.kim@example.com"
+    },
+    {
+      "resourceId": "XOG12371",
+      "name": "Hank Scott",
+      "isActive": true,
+      "emailAddress": "hank.scott@example.com"
+    },
+    {
+      "resourceId": "XOG12372",
+      "name": "Ivy Lee",
+      "isActive": true,
+      "emailAddress": "ivy.lee@example.com"
     }
   ]
 }

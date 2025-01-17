@@ -1,0 +1,35 @@
+<NikuDataBus xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../xsd/nikuxog_resource.xsd'>
+  <Header version='6.0.12' action='write' objectType='resource' externalSource='ORACLE-FINANCIAL' />
+  <Resources>
+    <Resource resourceId='XOG12363' isActive='true' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Doee' firstName='John' emailAddress='john.doe@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12364' isActive='false' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Smithh' firstName='Alice' emailAddress='alice.smith@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12365' isActive='true' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Martin' firstName='Bob' emailAddress='bob.martin@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12366' isActive='true' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Brown' firstName='Charlie' emailAddress='charlie.brown@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12367' isActive='true' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Lee' firstName='David' emailAddress='david.lee@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12368' isActive='false' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Turner' firstName='Eva' emailAddress='eva.turner@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12369' isActive='true' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Harris' firstName='Frank' emailAddress='frank.harris@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12370' isActive='false' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Kim' firstName='Grace' emailAddress='grace.kim@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12371' isActive='true' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Scott' firstName='Hank' emailAddress='hank.scott@example.com' />
+    </Resource>
+    <Resource resourceId='XOG12372' isActive='true' employmentType='Employee' externalId='2323AAA'>
+      <PersonalInformation lastName='Lee' firstName='Ivy' emailAddress='ivy.lee@example.com' />
+    </Resource>
+  </Resources>
+</NikuDataBus>
